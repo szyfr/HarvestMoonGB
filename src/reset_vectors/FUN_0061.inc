@@ -10,67 +10,53 @@ FUN_0061:
 
 	rst $08
 
-	ldh a,[c]
-	ccf
-	nop
 
-rept 5
-	sbc l
-	rrca
-	nop
-endr
-
-	call FUN_003F
-	
-	pop de
-	ccf
-	nop
-
-rept 5
-	push de
-	ccf
-	nop
-endr
-
-rept 2
-	ldh a,[c]
-	ccf
-	nop
-endr
-
-	reti
-
-
-;; Padding
+;; Unknown data
 ;; Possibly sprite data?
-db $3F,$00,$DD
-db $3F,$00,$DD
-db $3F,$00,$E1
-db $3F,$00,$E5
-db $3F,$00,$E5
-db $3F,$00,$E5
-db $3F,$00,$E5
-db $3F,$00,$E5
-db $3F,$00,$E5
-db $3F,$00,$E5
-db $3F,$00,$E5
-db $3F,$00,$CD
-db $3F,$00,$E1
-db $3F,$00,$E1
-db $3F,$00,$CD
-db $3F,$00,$CD
-db $3F,$00,$F2
-db $3F,$00,$F2
-db $3F,$00,$CD
-db $3F,$00,$E1
-db $3F,$00,$F2
-db $3F,$00,$ED
-db $3F,$00,$F3
-db $3F,$00,$F3
-db $3F,$00,$F2
-db $3F,$00,$F3
-db $3F,$00,$FF
+;  pointers?
+db $F2,$3F,$00
+db $9D,$0F,$00
+db $9D,$0F,$00
+db $9D,$0F,$00
+db $9D,$0F,$00
+db $9D,$0F,$00
+db $CD,$3F,$00
+db $D1,$3F,$00
+db $D5,$3F,$00
+db $D5,$3F,$00
+db $D5,$3F,$00
+db $D5,$3F,$00
+db $D5,$3F,$00
+db $F2,$3F,$00
+db $F2,$3F,$00
+db $D9,$3F,$00
+db $DD,$3F,$00
+db $DD,$3F,$00
+db $E1,$3F,$00
+db $E5,$3F,$00
+db $E5,$3F,$00
+db $E5,$3F,$00
+db $E5,$3F,$00
+db $E5,$3F,$00
+db $E5,$3F,$00
+db $E5,$3F,$00
+db $E5,$3F,$00
+db $CD,$3F,$00
+db $E1,$3F,$00
+db $E1,$3F,$00
+db $CD,$3F,$00
+db $CD,$3F,$00
+db $F2,$3F,$00
+db $F2,$3F,$00
+db $CD,$3F,$00
+db $E1,$3F,$00
+db $F2,$3F,$00
+db $ED,$3F,$00
+db $F3,$3F,$00
+db $F3,$3F,$00
+db $F2,$3F,$00
+db $F3,$3F,$00
 
 db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
 db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
-db $FF,$FF,$FF,$FF,$FF,$FF,$FF
+db $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
