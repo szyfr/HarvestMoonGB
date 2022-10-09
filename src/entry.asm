@@ -2,13 +2,13 @@
 ;;= Definitions
 include "src/include/hardware.inc"
 
-INCLUDE "src/todo.inc"
+include "src/todo.inc"
 
 
 ;;= Code
-INCLUDE "src/reset_vectors/reset_vectors.inc"          ;; ROM0[$0000]
-INCLUDE "src/reset_vectors/hardware_interrupts.inc"    ;; ROM0[$0040]
-INCLUDE "src/reset_vectors/FUN_0061.inc"               ;; ROM0[$0061]
+include "src/reset_vectors/reset_vectors.inc"          ;; ROM0[$0000]
+include "src/reset_vectors/hardware_interrupts.inc"    ;; ROM0[$0040]
+include "src/reset_vectors/FUN_0061.inc"               ;; ROM0[$0061]
 
 
 SECTION "header", ROM0[$0100]
@@ -239,6 +239,9 @@ start:
 
 	jp  .LAB_01F7
 
+
+
+include "src/bank0/FUN_2078.inc"
 
 
 SECTION "End", ROMX[$7FFF], BANK[31]

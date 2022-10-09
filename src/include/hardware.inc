@@ -67,6 +67,7 @@ DEF rRAMG        EQU $0000 ; $0000->$1fff
  ; $00 = disabled
  ; $0A = enabled
 DEF rROMB0       EQU $2000 ; $2000->$2fff
+DEF rROMB01      EQU $2100 ; $2000->$2fff
  ; ROM bank number
 DEF rROMB1       EQU $3000 ; $3000->$3fff
  ; ROM bank number if more than 256 ROM banks are present.

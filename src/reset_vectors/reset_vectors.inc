@@ -11,9 +11,9 @@ db $ff,$ff,$ff,$ff,$ff
 
 
 ;;= RST08
-;;= Jump to LAB_2078
+;;= Jump to FUN_2078
 RST08:
-	jp LAB_2078
+	jp FUN_2078
 	ret
 ;; Padding
 db $ff,$ff,$ff,$ff
