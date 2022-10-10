@@ -2,9 +2,9 @@
 SECTION "2078", ROM0[$2078]
 
 
-;;= FUN_2078
-;;=  Loads values located in a pointed to location plus input a.
-;;=  Input: A - offset, st - ptr
+;;= FUN_2078 (???)
+;;=  Adds A*3 to return value, loads hl and a from that location, then jumps to hl.
+;;=  Input: A - offset, stack+0x8 - return
 FUN_2078:
 	; hl = a*3
 	ld  e,a

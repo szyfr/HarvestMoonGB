@@ -5,13 +5,13 @@ section "reset_vectors", rom0[$0000]
 ;;= RST00
 ;;= Jump to LAB_206C
 RST00:
-	jp LAB_206C
+	jp FUN_206C
 ;; Padding
 db $ff,$ff,$ff,$ff,$ff
 
 
 ;;= RST08
-;;= Jump to FUN_2078
+;;= 
 RST08:
 	jp FUN_2078
 	ret

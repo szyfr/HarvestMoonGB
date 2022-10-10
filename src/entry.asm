@@ -182,15 +182,18 @@ start:
 	pop af
 	pop hl
 
-	; Calls FUN_0258
+	; Clears a HRAM value
 	xor a
 	ldh [$97],a
+
+	; Calls FUN_0258
 	call FUN_0258 ; TODO
 
 	; Saves hl=af and then calls FUN_208B
 	push hl
 	push af
 
+	; Calls FUN_208B
 	ld  l,$26
 	ld  h,$24
 	ld  a,0
@@ -241,6 +244,9 @@ start:
 
 
 
+include "src/bank0/FUN_0258.inc"
+
+include "src/bank0/FUN_206C.inc"
 include "src/bank0/FUN_2078.inc"
 
 
