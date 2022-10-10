@@ -35,15 +35,15 @@ start:
 	; Set default stack
 	ld  sp,$DFEF
 
-	; Call FUN_218E
+	; Clears memory from $FF80->$FFFE
 	ld  hl,$FF80
 	ld  bc,$007F
-	call FUN_218E ; TODO
+	call clear_memory
 
-	; Call FUN_218E
+	; Clears memory from $DD00->$DDFE
 	ld  hl,$DD00
 	ld  bc,$00FF
-	call FUN_218E ; TODO
+	call clear_memory
 
 	; Call FUN_214E
 	call FUN_214E ; TODO
@@ -98,13 +98,13 @@ start:
 .LAB_01AD:
 	di
 
-	; Clears IE, resets sp, then calls FUN_218E
+	; Clears IE, resets sp, then calls clear_memory
 	xor a
 	ldh [rIE],a
 	ld  sp,$DFEF
 	ld  hl,$FF80
 	ld  bc,$007F
-	call FUN_218E ; TODO
+	call clear_memory ; TODO
 
 	; Sets a variable to 2 and calls FUN_2166
 	ld  a,2
@@ -116,15 +116,15 @@ start:
 	ldh [rSCY],a
 	ldh [rSCX],a
 
-	; Calls FUN_218E
+	; Calls clear_memory
 	ld  hl,$8000
 	ld  bc,$1FFF
-	call FUN_218E ; TODO
+	call clear_memory ; TODO
 	
-	; Calls FUN_218E
+	; Calls clear_memory
 	ld  hl,$C000
 	ld  bc,$1CFF
-	call FUN_218E ; TODO
+	call clear_memory ; TODO
 	
 	; Calls FUN_214E
 	call FUN_214E ; TODO
@@ -248,6 +248,10 @@ include "src/bank0/FUN_0258.inc"
 
 include "src/bank0/FUN_206C.inc"
 include "src/bank0/FUN_2078.inc"
+
+include "src/bank0/FUN_214E.inc"
+
+include "src/bank0/clear_memory.inc"
 
 
 SECTION "End", ROMX[$7FFF], BANK[31]
