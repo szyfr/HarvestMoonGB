@@ -45,9 +45,10 @@ start:
 	ld  bc,$00FF
 	call clear_memory
 
-	; Call FUN_214E
-	call FUN_214E ; TODO
+	; Call copy_run_dma
+	call copy_run_dma
 
+	; Clears BG pallette and OBJ color data
 	xor a
 	ldh [rBGP],a
 	xor a
@@ -126,8 +127,8 @@ start:
 	ld  bc,$1CFF
 	call clear_memory ; TODO
 	
-	; Calls FUN_214E
-	call FUN_214E ; TODO
+	; Calls copy_run_dma
+	call copy_run_dma
 
 	; Sets RAM bank to 0
 	xor a
@@ -244,14 +245,20 @@ start:
 
 
 
-include "src/bank0/FUN_0258.inc"
+include "src/bank0/FUN_0258.inc"     ; b0,$0258
 
-include "src/bank0/FUN_206C.inc"
-include "src/bank0/FUN_2078.inc"
+include "src/bank0/FUN_206C.inc"     ; b0,$206C
+include "src/bank0/FUN_2078.inc"     ; b0,$2078
 
-include "src/bank0/FUN_214E.inc"
+include "src/bank0/copy_run_dma.inc" ; b0,$214E
 
-include "src/bank0/clear_memory.inc"
+include "src/bank0/clear_memory.inc" ; b0,$218E
+
+include "src/bank0/FUN_2426.inc"     ; b0,$2426
 
 
 SECTION "End", ROMX[$7FFF], BANK[31]
+
+
+; RAM variables
+include "src/ram/hram.inc"
