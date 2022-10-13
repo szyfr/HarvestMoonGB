@@ -259,6 +259,9 @@ include "src/bank0/lcd_disable.inc"  ; b0,$2166
 
 include "src/bank0/clear_memory.inc" ; b0,$218E
 
+include "src/bank0/FUN_22E8.inc"     ; b0,$22E8
+db $FA,$00,$DD,$B7,$C8
+include "src/bank0/wait_7000.inc"    ; b0,$2323
 include "src/bank0/FUN_232F.inc"     ; b0,$232F
 
 include "src/bank0/FUN_2426.inc"     ; b0,$2426
