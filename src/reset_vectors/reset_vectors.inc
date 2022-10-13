@@ -6,8 +6,7 @@ section "reset_vectors", rom0[$0000]
 ;;= Jump to LAB_206C
 RST00:
 	jp FUN_206C
-;; Padding
-db $ff,$ff,$ff,$ff,$ff
+ds 5, $FF
 
 
 ;;= RST08
@@ -15,48 +14,42 @@ db $ff,$ff,$ff,$ff,$ff
 RST08:
 	jp FUN_2078
 	ret
-;; Padding
-db $ff,$ff,$ff,$ff
+ds 4, $FF
 
 
 ;;= RST10
 ;;= Empty
 RST10:
 	ret
-;; Padding
-db $ff,$ff,$ff,$ff,$ff,$ff,$ff
+ds 7, $FF
 
 
 ;;= RST18
 ;;= Empty
 RST18:
 	ret
-;; Padding
-db $ff,$ff,$ff,$ff,$ff,$ff,$ff
+ds 7, $FF
 
 
 ;;= RST20
 ;;= Empty
 RST20:
 	ret
-;; Padding
-db $ff,$ff,$ff,$ff,$ff,$ff,$ff
+ds 7, $FF
 
 
 ;;= RST28
 ;;= Empty
 RST28:
 	ret
-;; Padding
-db $ff,$ff,$ff,$ff,$ff,$ff,$ff
+ds 7, $FF
 
 
 ;;= RST30
 ;;= Empty
 RST30:
 	ret
-;; Padding
-db $ff,$ff,$ff,$ff,$ff,$ff,$ff
+ds 7, $FF
 
 
 ;;= RST38

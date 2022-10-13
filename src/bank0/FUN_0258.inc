@@ -6,7 +6,7 @@ SECTION "0258", ROM0[$0258]
 ;;=  Reads from table and jumps to ptr with a
 ;;=  Input:
 FUN_0258:
-	ld  a,[$C0A7]
+	ld  a,[$C0A7] ; TODO
 	or  a
 	rst $08
 

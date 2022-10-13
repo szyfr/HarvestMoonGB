@@ -3,23 +3,23 @@ SECTION "2426", ROM0[$2426]
 
 
 ;;= FUN_2426
-;;=  
+;;=  Seemingly initializes audio.
 ;;=  Input: 
 FUN_2426:
 	; Call FUN_2468
 	ld  bc,0
-	call FUN_2468 ; TODO
+	call FUN_2468
 
 	; Initialize audio?
 	ld  a,$80
 	ldh [rNR52],a
 	xor a
 	ldh [rNR51],a
-	ld  [$D397],a
+	ld  [$D397],a ; TODO
 	ld  a,$77
 	ldh [rNR50],a
 
-	; Iit loop
+	; Init loop
 	ld  hl,$D300
 	ld  b,6
 	ld  a,$FF

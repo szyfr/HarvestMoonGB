@@ -57,7 +57,7 @@ start:
 	ldh [rOBP1],a
 
 	; Call FUN_2426
-	call FUN_2426 ; TODO
+	call FUN_2426
 
 	; Call FUN_2166
 	ld  a,2
@@ -105,7 +105,7 @@ start:
 	ld  sp,$DFEF
 	ld  hl,$FF80
 	ld  bc,$007F
-	call clear_memory ; TODO
+	call clear_memory
 
 	; Sets a variable to 2 and calls FUN_2166
 	ld  a,2
@@ -120,12 +120,12 @@ start:
 	; Calls clear_memory
 	ld  hl,$8000
 	ld  bc,$1FFF
-	call clear_memory ; TODO
+	call clear_memory
 	
 	; Calls clear_memory
 	ld  hl,$C000
 	ld  bc,$1CFF
-	call clear_memory ; TODO
+	call clear_memory
 	
 	; Calls copy_run_dma
 	call copy_run_dma
@@ -255,6 +255,10 @@ include "src/bank0/copy_run_dma.inc" ; b0,$214E
 include "src/bank0/clear_memory.inc" ; b0,$218E
 
 include "src/bank0/FUN_2426.inc"     ; b0,$2426
+; Probable functions. Haven't been called yet.
+db $AF,$EA,$A3,$D3,$FA,$A4,$D3,$EA,$97,$D3,$C9
+db $3E,$04,$EA,$A3,$D3,$AF,$EA,$97,$D3,$C9
+include "src/bank0/FUN_2468.inc"     ; b0,$2468
 
 
 SECTION "End", ROMX[$7FFF], BANK[31]
