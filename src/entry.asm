@@ -59,10 +59,12 @@ start:
 	; Call FUN_2426
 	call FUN_2426
 
-	; Call FUN_2166
+	; Store variable
 	ld  a,2
 	ldh [$8D],a ; TODO
-	call FUN_2166 ; TODO
+
+	; Call lcd_disable
+	call lcd_disable
 
 	xor a
 	ldh [rSCY],a
@@ -107,10 +109,12 @@ start:
 	ld  bc,$007F
 	call clear_memory
 
-	; Sets a variable to 2 and calls FUN_2166
+	; Store a variable to 2
 	ld  a,2
 	ldh [$8D],a
-	call FUN_2166 ; TODO
+
+	; Calls lcd_disable
+	call lcd_disable
 
 	; Clears SCY+X
 	xor a
@@ -138,8 +142,8 @@ start:
 	ld  a,$20
 	ld  [$C0A7],a
 
-	; Calls FUN_2166
-	call FUN_2166 ; TODO
+	; Calls lcd_disable
+	call lcd_disable
 
 	; Saves hl=af and then calls FUN_208B
 	push hl
@@ -156,8 +160,8 @@ start:
 .LAB_01F7:
 	di
 
-	; Calls FUN_2166
-	call FUN_2166 ; TODO
+	; Calls lcd_disable
+	call lcd_disable
 
 	; Saves hl=af and then calls FUN_208B
 	push hl
@@ -251,8 +255,11 @@ include "src/bank0/FUN_206C.inc"     ; b0,$206C
 include "src/bank0/FUN_2078.inc"     ; b0,$2078
 
 include "src/bank0/copy_run_dma.inc" ; b0,$214E
+include "src/bank0/lcd_disable.inc"  ; b0,$2166
 
 include "src/bank0/clear_memory.inc" ; b0,$218E
+
+include "src/bank0/FUN_232F.inc"     ; b0,$232F
 
 include "src/bank0/FUN_2426.inc"     ; b0,$2426
 ; Probable functions. Haven't been called yet.

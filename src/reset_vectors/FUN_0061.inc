@@ -3,7 +3,8 @@ section "FUN_0061", rom0[$0061]
 
 
 ;;= FUN_0061
-;;= 
+;;=  
+;;=  Input: 
 FUN_0061:
 	ld  a,[$C0A7] ; TODO
 	or  a
