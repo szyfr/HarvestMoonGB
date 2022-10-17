@@ -15,5 +15,14 @@ start
  |- FUN_0061
  |- FUN_217F
  |- FUN_77A7 (bank07)
+ 	 |- FUN_22E8
+		 |- wait_7000
+ 	 |- wait_7000
+ 	 |- FUN_23E9
+	     |- lcd_disable
+	     |- FUN_3036 -
+	     |- wait_7000
+	     |- FUN_22E8
+			 |- wait_7000
  |- FUN_7816 (bank07) -
  |- FUN_7949 (bank07) -

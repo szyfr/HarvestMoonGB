@@ -236,6 +236,7 @@ start:
 
 
 
+;= Bank 0
 include "src/bank0/FUN_0258.inc"     ; b0,$0258
 
 include "src/bank0/FUN_206C.inc"     ; b0,$206C
@@ -256,13 +257,14 @@ db $FA,$00,$DD,$B7,$C8
 include "src/bank0/wait_7000.inc"    ; b0,$2323
 include "src/bank0/FUN_232F.inc"     ; b0,$232F
 
+include "src/bank0/FUN_23E9.inc"     ; b0,$23E9
 include "src/bank0/FUN_2426.inc"     ; b0,$2426
 ; Probable functions. Haven't been called yet.
 db $AF,$EA,$A3,$D3,$FA,$A4,$D3,$EA,$97,$D3,$C9
 db $3E,$04,$EA,$A3,$D3,$AF,$EA,$97,$D3,$C9
 include "src/bank0/FUN_2468.inc"     ; b0,$2468
 
-
+;= Bank 7
 include "src/bank7/FUN_77A7.inc"     ; b7,$77A7
 
 

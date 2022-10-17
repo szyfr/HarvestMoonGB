@@ -8,4 +8,4 @@ cls
 git add *
 git commit -m %commitText%
 
-if "%commitTag%"=="-p" git push -u origin master
+if "%commitTag%"=="-p" git push
