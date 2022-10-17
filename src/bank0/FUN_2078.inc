@@ -30,33 +30,3 @@ FUN_2078:
 	ld  a,[hl]
 	ld  l,e
 	ld  h,d
-
-;;= FUN_208B
-;;=  Loads input ROM bank and calls FUN_20A0
-;;=  Input: A - ROM bank
-FUN_208B:
-	push bc
-
-	; Save a in b, then save SRAM bank in c
-	ld  b,a
-	ld  a,[rRAMB]
-	ld  c,a
-
-	; Set ROM bank to input a
-	ld  a,b
-	ld  [rROMB01],a
-
-	; Grab SRAM bank
-	ld  a,c
-
-	pop bc
-
-	; Call FUN_20A0
-	push af
-	call FUN_20A0 ; TODO
-	pop af
-
-	; Reset SRAM bank
-	ld  [rROMB01],a
-
-	ret

@@ -81,18 +81,16 @@ start:
 	; Sets a variable to 0 and calls FUN_232F, jumps if carry
 	xor a
 	ld  [$DD00],a
-	call FUN_232F ; TODO
+	call FUN_232F
 	jr  nc,.LAB_01AC
 
-	; Saves hl=af and then calls FUN_208B
+	; FUN_208B(bank = 7, target = $77A7)
 	push hl
 	push af
-
 	ld  l,$A7
 	ld  h,$77
 	ld  a,7
-	call FUN_208B ; TODO
-
+	call FUN_208B
 	pop af
 	pop hl
 
@@ -145,15 +143,13 @@ start:
 	; Calls lcd_disable
 	call lcd_disable
 
-	; Saves hl=af and then calls FUN_208B
+	; FUN_208B(bank = 0, target = $2426)
 	push hl
 	push af
-
 	ld  l,$26
 	ld  h,$24
 	ld  a,0
-	call FUN_208B ; TODO
-
+	call FUN_208B
 	pop af
 	pop hl
 
@@ -163,27 +159,23 @@ start:
 	; Calls lcd_disable
 	call lcd_disable
 
-	; Saves hl=af and then calls FUN_208B
+	; FUN_208B(bank = 0, target = $2426)
 	push hl
 	push af
-
 	ld  l,$26
 	ld  h,$24
 	ld  a,0
-	call FUN_208B ; TODO
-
+	call FUN_208B
 	pop af
 	pop hl
 
-	; Saves hl=af and then calls FUN_208B
+	; FUN_208B(bank = 7, target = $7816)
 	push hl
 	push af
-
 	ld  l,$16
 	ld  h,$78
 	ld  a,7
-	call FUN_208B ; TODO
-
+	call FUN_208B
 	pop af
 	pop hl
 
@@ -192,18 +184,15 @@ start:
 	ldh [$97],a
 
 	; Calls FUN_0258
-	call FUN_0258 ; TODO
+	call FUN_0258
 
-	; Saves hl=af and then calls FUN_208B
+	; FUN_208B(bank = 0, target = $2426)
 	push hl
 	push af
-
-	; Calls FUN_208B
 	ld  l,$26
 	ld  h,$24
 	ld  a,0
-	call FUN_208B ; TODO
-
+	call FUN_208B
 	pop af
 	pop hl
 
@@ -219,23 +208,21 @@ start:
 	xor a
 	ldh [$97],a ; TODO
 
-	; Saves hl=af and then calls FUN_208B
+	; FUN_208B(bank = 7, target = $7949)
 	push hl
 	push af
-
 	ld  l,$49
 	ld  h,$79
 	ld  a,7
-	call FUN_208B ; TODO
-
+	call FUN_208B
 	pop af
 	pop hl
 
 	; Calls FUN_0061
-	call FUN_0061 ; TODO
+	call FUN_0061
 
 	; Calls FUN_217F
-	call FUN_217F ; TODO
+	call FUN_217F
 
 	ei
 .LAB_024D:
@@ -253,13 +240,18 @@ include "src/bank0/FUN_0258.inc"     ; b0,$0258
 
 include "src/bank0/FUN_206C.inc"     ; b0,$206C
 include "src/bank0/FUN_2078.inc"     ; b0,$2078
+include "src/bank0/FUN_208B.inc"     ; b0,$208B
+include "src/bank0/jump_hl.inc"     ; b0,$20A0
 
 include "src/bank0/copy_run_dma.inc" ; b0,$214E
 include "src/bank0/lcd_disable.inc"  ; b0,$2166
-
+include "src/bank0/FUN_217F.inc"     ; b0,$217F
+; Ends in $C9, might be function
+db $AF,$E0,$0F,$FA,$A0,$C0,$E0,$FF,$C9
 include "src/bank0/clear_memory.inc" ; b0,$218E
 
 include "src/bank0/FUN_22E8.inc"     ; b0,$22E8
+; Doesn't end in $C9, might be data
 db $FA,$00,$DD,$B7,$C8
 include "src/bank0/wait_7000.inc"    ; b0,$2323
 include "src/bank0/FUN_232F.inc"     ; b0,$232F
@@ -269,6 +261,9 @@ include "src/bank0/FUN_2426.inc"     ; b0,$2426
 db $AF,$EA,$A3,$D3,$FA,$A4,$D3,$EA,$97,$D3,$C9
 db $3E,$04,$EA,$A3,$D3,$AF,$EA,$97,$D3,$C9
 include "src/bank0/FUN_2468.inc"     ; b0,$2468
+
+
+include "src/bank7/FUN_77A7.inc"     ; b7,$77A7
 
 
 SECTION "End", ROMX[$7FFF], BANK[31]

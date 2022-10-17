@@ -3,8 +3,12 @@ SECTION "22E8", ROM0[$22E8]
 
 
 ;;= FUN_22E8
-;;=  
-;;=  Input: HL - ???
+;;=  This function seems to use the 16 bytes located at [hl] to do something.
+;;=  I hate this thing. The developer responsible is insane. If someone can tell me what this is supposed to do, PLEASE.
+;;=  It has to be some sort of wait function, because otherwise it does nothing BUT waste time.
+;;=  IF it is a wait function, the range is roughly 10,152 cycles (.002 seconds) -> 74,315,160 cycles (17 seconds)\
+;;=  Function (roughly): cy = (((592 + (10*NumOfOnesIn[hl+])) * 16) + 36) + 104 + (280000 * loops-1)
+;;=  Input: HL - ptr
 FUN_22E8:
 	; Loads value from hl and if [hl] & 7 == 0, return
 	ld  a,[hl]
@@ -18,13 +22,13 @@ FUN_22E8:
 .loop:
 	push bc
 
-	; Write 0, then None, then Buttons to rP1
-	ld  a,$00
-	ldh [c],a
-	ld  a,P1F_GET_NONE
-	ldh [c],a
-	ld  b,P1F_GET_BTN
+	; Useless?
+	ld  a,$00 ;8
+	ldh [c],a ;8
+	ld  a,P1F_GET_NONE ;8
+	ldh [c],a ;8
 
+	ld  b,$10
 .LAB_22F8:
 	; Load [hl] into $XX08, inc hl
 	ld  e,8
@@ -32,17 +36,17 @@ FUN_22E8:
 	ld  d,a
 
 .LAB_22FC:
-	; If bit 0 of d is zero, load P1F_GET_DPAD into a
+	; If bit 0 of d is zero, skip 8 cycles
 	bit 0,d
-	ld  a,P1F_GET_BTN
+	ld  a,P1F_GET_BTN ;8
 	jr  nz,.LAB_2304
 	
-	ld  a,P1F_GET_DPAD
+	ld  a,P1F_GET_DPAD ;8
 .LAB_2304:
-	; Set rP1 to BTN/DPAD then NONE
-	ldh [c],a
-	ld  a,P1F_GET_NONE
-	ldh [c],a
+	; Useless?
+	ldh [c],a ;8
+	ld  a,P1F_GET_NONE ;8
+	ldh [c],a ;8
 
 	; Rotate d right and dec e. If e != 0, jump back up
 	rr  d
@@ -53,11 +57,11 @@ FUN_22E8:
 	dec b
 	jr  nz,.LAB_22F8
 
-	; Write DPAD then NONE to rP1
-	ld  a,P1F_GET_DPAD
-	ldh [c],a
-	ld  a,P1F_GET_NONE
-	ldh [c],a
+	; Useless?
+	ld  a,P1F_GET_DPAD ;8
+	ldh [c],a ;8
+	ld  a,P1F_GET_NONE ;8
+	ldh [c],a ;8
 
 	; Restore bc and dec b. If b == 0, return. 
 	pop bc
@@ -69,3 +73,20 @@ FUN_22E8:
 
 	; Loop back
 	jr  .loop
+
+
+;FUN_22E8(HL) {
+;	if (([hl] & 7) == 0) return
+;
+;	var1 = ([hl] << 8)
+;	while(true) {
+;		for(16) {
+;			var2 = [hl+]
+;			for(8) {
+;				val2 = val2 >> 1
+;			}
+;		}
+;		var1--
+;		if(var1 == 0) return
+;	}
+;}

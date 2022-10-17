@@ -1,0 +1,19 @@
+
+start
+ |- clear_memory
+ |- copy_run_dma
+ |- FUN_2426
+     |- FUN_2468
+ |- lcd_disable
+ |- FUN_232F
+     |- FUN_22E8
+		 |- wait_7000
+	 |- wait_7000
+ |- FUN_208B
+	 |- jump_hl
+ |- FUN_0258
+ |- FUN_0061
+ |- FUN_217F
+ |- FUN_77A7 (bank07)
+ |- FUN_7816 (bank07) -
+ |- FUN_7949 (bank07) -
