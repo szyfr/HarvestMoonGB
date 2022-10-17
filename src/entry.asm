@@ -264,6 +264,8 @@ db $AF,$EA,$A3,$D3,$FA,$A4,$D3,$EA,$97,$D3,$C9
 db $3E,$04,$EA,$A3,$D3,$AF,$EA,$97,$D3,$C9
 include "src/bank0/FUN_2468.inc"     ; b0,$2468
 
+include "src/bank0/FUN_3036.inc"     ; b0,$3036
+
 ;= Bank 7
 include "src/bank7/FUN_77A7.inc"     ; b7,$77A7
 

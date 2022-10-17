@@ -4,7 +4,7 @@ SECTION "23E9", ROM0[$23E9]
 
 ;;= FUN_23E9
 ;;=  
-;;=  Input: HL - FUN_3036?, A - FUN_3036?, DE - wait
+;;=  Input: A - bank, HL - FUN_3036?, DE - wait
 FUN_23E9:
 	push de
 	push af
