@@ -6,7 +6,11 @@ SECTION "22E8", ROM0[$22E8]
 ;;=  This function seems to use the 16 bytes located at [hl] to do something.
 ;;=  I hate this thing. The developer responsible is insane. If someone can tell me what this is supposed to do, PLEASE.
 ;;=  It has to be some sort of wait function, because otherwise it does nothing BUT waste time.
-;;=  IF it is a wait function, the range is roughly 10,152 cycles (.002 seconds) -> 74,315,160 cycles (17 seconds)\
+;;=  IF it is a wait function, the range is roughly 10,152 cycles (.002 seconds) -> 74,315,160 cycles (17 seconds)
+;;=
+;;=  I experimented with removing it entirely. Nothing changed.
+;;=  Not only did nothing change, but it was only called twice before the game started normally.
+;;=
 ;;=  Function (roughly): cy = (((592 + (10*NumOfOnesIn[hl+])) * 16) + 36) + 104 + (280000 * loops-1)
 ;;=  Input: HL - ptr
 FUN_22E8:

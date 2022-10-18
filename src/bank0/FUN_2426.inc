@@ -2,25 +2,25 @@
 SECTION "2426", ROM0[$2426]
 
 
-;;= FUN_2426
+;;= FUN_2426()
+;;=
 ;;=  Seemingly initializes audio.
-;;=  Input: 
 FUN_2426:
-	; Call FUN_2468
+	; FUN_2468(0,0)
 	ld  bc,0
 	call FUN_2468
 
-	; Initialize audio?
-	ld  a,$80
+	; Initialize audio
+	ld  a,AUDENA_ON
 	ldh [rNR52],a
 	xor a
 	ldh [rNR51],a
-	ld  [$D397],a ; TODO
-	ld  a,$77
+	ld  [wunk_4],a
+	ld  a,AUDVOL_MAX_LEFT | AUDVOL_MAX_RIGHT
 	ldh [rNR50],a
 
-	; Init loop
-	ld  hl,$D300
+	; Set variables
+	ld  hl,wunkarr_1
 	ld  b,6
 	ld  a,$FF
 .loop:
@@ -35,6 +35,6 @@ FUN_2426:
 
 	; Clear variable
 	xor a
-	ld  [$D3A3],a ; TODO
+	ld  [wunk_5],a
 
 	ret

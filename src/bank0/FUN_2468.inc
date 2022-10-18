@@ -2,14 +2,14 @@
 SECTION "2468", ROM0[$2468]
 
 
-;;= FUN_2468
+;;= FUN_2468(B:val1, C:val2)
+;;=
 ;;=  Sets two variables to input values and zeros a third.
-;;=  Input: BC - values
 FUN_2468:
 	ld  a,b
-	ld  [$D3A0],a ; TODO
+	ld  [wunk_1],a
 	ld  a,c
-	ld  [$D3A1],a ; TODO
+	ld  [wunk_2],a
 	xor a
-	ld  [$D3A2],a ; TODO
+	ld  [wunk_3],a
 	ret

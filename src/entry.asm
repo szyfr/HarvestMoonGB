@@ -35,17 +35,17 @@ start:
 	; Set default stack
 	ld  sp,$DFEF
 
-	; Clears memory from $FF80->$FFFE
-	ld  hl,$FF80
+	; clear_memory(_HRAM, 127)
+	ld  hl,_HRAM
 	ld  bc,$007F
 	call clear_memory
 
-	; Clears memory from $DD00->$DDFE
+	; clear_memory($DD00, 255)
 	ld  hl,$DD00
 	ld  bc,$00FF
 	call clear_memory
 
-	; Call copy_run_dma
+	; copy_run_dma()
 	call copy_run_dma
 
 	; Clears BG pallette and OBJ color data
@@ -56,35 +56,40 @@ start:
 	xor a
 	ldh [rOBP1],a
 
-	; Call FUN_2426
+	; FUN_2426()
 	call FUN_2426
 
-	; Store variable
-	ld  a,2
-	ldh [$8D],a ; TODO
+	; Store variable to unk_4
+	ld  a,%00000010
+	ldh [unk_4],a
 
-	; Call lcd_disable
+	; lcd_disable()
 	call lcd_disable
 
+	; Clear scrolling
 	xor a
 	ldh [rSCY],a
 	ldh [rSCX],a
 
-	; Set RAM bank to 10
+	; Enable SRAM
 	ld  a,$0A
 	ld  [rRAMG],a
 
 	; Selects advanced banking mode
-	ld  a,1
+	ld  a,$01
 	ld  [rBANKS],a
 
-	; Sets a variable to 0 and calls FUN_232F, jumps if carry
+	; Sets a variable
 	xor a
-	ld  [$DD00],a
+	ld  [wunk_6],a
+
+	; TODO <-
+
+	; FUN_232F()
 	call FUN_232F
 	jr  nc,.LAB_01AC
 
-	; FUN_208B(bank = 7, target = $77A7)
+	; FUN_208B(7, $77A7)
 	push hl
 	push af
 	ld  l,$A7
@@ -107,9 +112,9 @@ start:
 	ld  bc,$007F
 	call clear_memory
 
-	; Store a variable to 2
-	ld  a,2
-	ldh [$8D],a
+	; Store a variable to unk_4
+	ld  a,%00000010
+	ldh [unk_4],a
 
 	; Calls lcd_disable
 	call lcd_disable
@@ -201,7 +206,7 @@ start:
 	xor a
 	ld  [$C0A6],a ; TODO
 	xor a
-	ldh [$8D],a ; TODO
+	ldh [unk_4],a
 	xor a
 	ldh [$9A],a ; TODO
 	xor a
@@ -259,6 +264,7 @@ include "src/bank0/wait_7000.inc"    ; b0,$2323
 include "src/bank0/FUN_232F.inc"     ; b0,$232F
 
 include "src/bank0/FUN_23E9.inc"     ; b0,$23E9
+db $C9
 include "src/bank0/FUN_2426.inc"     ; b0,$2426
 ; Probable functions. Haven't been called yet.
 db $AF,$EA,$A3,$D3,$FA,$A4,$D3,$EA,$97,$D3,$C9
@@ -276,4 +282,5 @@ SECTION "End", ROMX[$7FFF], BANK[31]
 
 
 ; RAM variables
+include "src/ram/wram.inc"
 include "src/ram/hram.inc"

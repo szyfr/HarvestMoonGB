@@ -1,15 +1,17 @@
 
 SECTION "copy_run_dma", ROM0[$214E]
 
-;;= copy_run_dma
+;;= copy_run_dma()
+;;=
 ;;=  Copies run_dma to $FF80
-;;=  Input: 
 copy_run_dma:
+	; Sets target in HRAM and length of function
 	ld  c,$80
 	ld  b,$0A
 	ld  hl,run_dma_origin
 
 .loop:
+	; Copies
 	ld  a,[hl+]
 	ldh [c],a
 	inc c

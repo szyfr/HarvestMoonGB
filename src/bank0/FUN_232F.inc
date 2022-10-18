@@ -2,13 +2,13 @@
 SECTION "232F", ROM0[$232F]
 
 
-;;= FUN_232F
+;;= FUN_232F()
 ;;=  
-;;=  Input: 
+;;=  
 FUN_232F:
 	; Call FUN_22E8 using $89 and $01
 	ld  hl,$23A0
-	call FUN_22E8 ; TODO
+	call FUN_22E8
 
 	; Call wait_7000
 	call wait_7000

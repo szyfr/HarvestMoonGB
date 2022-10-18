@@ -1,9 +1,9 @@
 
 SECTION "clear_memory", ROM0[$218E]
 
-;;= clear_memory
+;;= clear_memory(HL:ptr, BC:counter)
+;;=
 ;;=  Clears the input memory locations.
-;;=  Input: HL - ptr, BC - counter
 clear_memory:
 	; Clear [hl] and increment
 	xor a
