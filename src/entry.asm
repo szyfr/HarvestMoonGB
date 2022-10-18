@@ -137,6 +137,7 @@ start:
 	ld  [rRAMB],a
 
 	; Sets a variable to $20
+	; TODO Might be flags?
 	ld  a,$20
 	ld  [$C0A7],a
 
@@ -268,6 +269,7 @@ include "src/bank0/FUN_3036.inc"     ; b0,$3036
 
 ;= Bank 7
 include "src/bank7/FUN_77A7.inc"     ; b7,$77A7
+include "src/bank7/FUN_7816.inc"     ; b7,$7816
 
 
 SECTION "End", ROMX[$7FFF], BANK[31]

@@ -68,8 +68,6 @@ FUN_232F:
 	; Call FUN_22E8 using $89 and $00
 	ld  hl,$2390
 	call FUN_22E8 ; TODO
-
-	; Call wait_7000
 	call wait_7000
 
 	; potential 0 carry return?
@@ -80,8 +78,6 @@ FUN_232F:
 	; Call FUN_22E8 using $89 and $00
 	ld  hl,$2390
 	call FUN_22E8 ; TODO
-
-	; Call wait_7000
 	call wait_7000
 
 	; Carry = 1

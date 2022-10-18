@@ -20,9 +20,15 @@ start
  	 |- wait_7000
  	 |- FUN_23E9
 	     |- lcd_disable
-	     |- FUN_3036 -
+	     |- FUN_3036
 	     |- wait_7000
 	     |- FUN_22E8
 			 |- wait_7000
  |- FUN_7816 (bank07) -
+	 |- clear_memory
+	 |- FUN_22E8
+	 	 |- wait_7000
+	 |- wait_7000
+	 |- FUN_217F
+	 |- FUN_07A9 -
  |- FUN_7949 (bank07) -
