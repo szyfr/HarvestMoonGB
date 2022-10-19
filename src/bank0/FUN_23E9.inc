@@ -15,14 +15,14 @@ FUN_23E9:
 	pop hl
 
 	; Set bg palette
-	ld  a,$E4
+	ld  a,%11100100
 	ldh [rBGP],a
 
-	; Call FUN_3036
+	; FUN_3036
 	pop af
 	ld  c,a
 	ld  de,$8800
-	call FUN_3036 ; TODO
+	call FUN_3036
 
 	; Clear scrolling
 	xor a

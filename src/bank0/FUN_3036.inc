@@ -2,41 +2,29 @@
 SECTION "3036", ROM0[$3036]
 
 
-;;= FUN_3036
+;;= FUN_3036(C:bank, D: , E:, HL: )
 ;;=  
-;;=  Input: C - bank, D - , E - , HL - 
+;;=  
 FUN_3036:
-	; Preserve ROM bank
+	; Preserve ROM bank and sets ROM bank to input C
 	ld  a,[$4000]
 	push af
-
-	; Sets ROM bank to input C
 	ld  a,c
 	ld  [rROMB01],a
 
-	; Sets HRAM $B9 to D
+	; Sets HRAM variables to input
 	ld  a,d
-	ldh [$B9],a
-
-	; Sets HRAM $B8 to E
+	ldh [unk_6],a ;D
 	ld  a,e
-	ldh [$B8],a
-
-	; Sets HRAM $BA to [HL] then incs
+	ldh [unk_5],a ;E
 	ld  a,[hl+]
-	ldh [$BA],a
-
-	; Sets HRAM $BC to [HL] + E
+	ldh [unk_7],a ;[HL+]
 	add e
-	ldh [$BC],a
-
-	; Sets HRAM $BB to [HL] then incs
+	ldh [unk_9],a ;unk_7 + E
 	ld  a,[hl+]
-	ldh [$BB],a
-
-	; Sets HRAM $BD to [HL] + d with carry
+	ldh [unk_8],a ;[HL+]
 	adc d
-	ldh [$BD],a
+	ldh [unk_10],a ;unk_8 + D
 
 	ld  c,$00
 .loop:

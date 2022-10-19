@@ -1,15 +1,4 @@
 
-;;= Definitions
-include "src/include/hardware.inc"
-
-include "src/todo.inc"
-
-
-;;= Code
-include "src/reset_vectors/reset_vectors.inc"          ;; ROM0[$0000]
-include "src/reset_vectors/hardware_interrupts.inc"    ;; ROM0[$0040]
-include "src/reset_vectors/FUN_0061.inc"               ;; ROM0[$0061]
-
 
 SECTION "header", ROM0[$0100]
 
@@ -19,7 +8,6 @@ EntryPoint:
 
 
 ds $0150 - @, 0
-
 
 start:
 	nop
@@ -83,8 +71,6 @@ start:
 	xor a
 	ld  [wunk_6],a
 
-	; TODO <-
-
 	; FUN_232F()
 	call FUN_232F
 	jr  nc,.LAB_01AC
@@ -104,11 +90,13 @@ start:
 .LAB_01AD:
 	di
 
-	; Clears IE, resets sp, then calls clear_memory
+	; Clears IE and resets sp
 	xor a
 	ldh [rIE],a
 	ld  sp,$DFEF
-	ld  hl,$FF80
+
+	; clear_memory(_HRAM, 127)
+	ld  hl,_HRAM
 	ld  bc,$007F
 	call clear_memory
 
@@ -116,25 +104,25 @@ start:
 	ld  a,%00000010
 	ldh [unk_4],a
 
-	; Calls lcd_disable
+	; lcd_disable()
 	call lcd_disable
 
-	; Clears SCY+X
+	; Clears Scrolls
 	xor a
 	ldh [rSCY],a
 	ldh [rSCX],a
 
-	; Calls clear_memory
-	ld  hl,$8000
+	; clear_memory(_VRAM, 8191)
+	ld  hl,_VRAM
 	ld  bc,$1FFF
 	call clear_memory
 	
-	; Calls clear_memory
-	ld  hl,$C000
+	; clear_memory(_RAM, 7423)
+	ld  hl,_RAM
 	ld  bc,$1CFF
 	call clear_memory
 	
-	; Calls copy_run_dma
+	; copy_run_dma()
 	call copy_run_dma
 
 	; Sets RAM bank to 0
@@ -142,14 +130,13 @@ start:
 	ld  [rRAMB],a
 
 	; Sets a variable to $20
-	; TODO Might be flags?
-	ld  a,$20
-	ld  [$C0A7],a
+	ld  a,%00100000
+	ld  [wunk_7],a
 
-	; Calls lcd_disable
+	; lcd_disable()
 	call lcd_disable
 
-	; FUN_208B(bank = 0, target = $2426)
+	; FUN_208B(0, $2426)
 	push hl
 	push af
 	ld  l,$26
@@ -162,10 +149,10 @@ start:
 .LAB_01F7:
 	di
 
-	; Calls lcd_disable
+	; lcd_disable()
 	call lcd_disable
 
-	; FUN_208B(bank = 0, target = $2426)
+	; FUN_208B(0, $2426)
 	push hl
 	push af
 	ld  l,$26
@@ -175,7 +162,7 @@ start:
 	pop af
 	pop hl
 
-	; FUN_208B(bank = 7, target = $7816)
+	; FUN_208B(7, $7816)
 	push hl
 	push af
 	ld  l,$16
@@ -239,48 +226,3 @@ start:
 	jp  z,.LAB_024D
 
 	jp  .LAB_01F7
-
-
-
-;= Bank 0
-include "src/bank0/FUN_0258.inc"     ; b0,$0258
-
-include "src/bank0/FUN_206C.inc"     ; b0,$206C
-include "src/bank0/FUN_2078.inc"     ; b0,$2078
-include "src/bank0/FUN_208B.inc"     ; b0,$208B
-include "src/bank0/jump_hl.inc"     ; b0,$20A0
-
-include "src/bank0/copy_run_dma.inc" ; b0,$214E
-include "src/bank0/lcd_disable.inc"  ; b0,$2166
-include "src/bank0/FUN_217F.inc"     ; b0,$217F
-; Ends in $C9, might be function
-db $AF,$E0,$0F,$FA,$A0,$C0,$E0,$FF,$C9
-include "src/bank0/clear_memory.inc" ; b0,$218E
-
-include "src/bank0/FUN_22E8.inc"     ; b0,$22E8
-; Doesn't end in $C9, might be data
-db $FA,$00,$DD,$B7,$C8
-include "src/bank0/wait_7000.inc"    ; b0,$2323
-include "src/bank0/FUN_232F.inc"     ; b0,$232F
-
-include "src/bank0/FUN_23E9.inc"     ; b0,$23E9
-db $C9
-include "src/bank0/FUN_2426.inc"     ; b0,$2426
-; Probable functions. Haven't been called yet.
-db $AF,$EA,$A3,$D3,$FA,$A4,$D3,$EA,$97,$D3,$C9
-db $3E,$04,$EA,$A3,$D3,$AF,$EA,$97,$D3,$C9
-include "src/bank0/FUN_2468.inc"     ; b0,$2468
-
-include "src/bank0/FUN_3036.inc"     ; b0,$3036
-
-;= Bank 7
-include "src/bank7/FUN_77A7.inc"     ; b7,$77A7
-include "src/bank7/FUN_7816.inc"     ; b7,$7816
-
-
-SECTION "End", ROMX[$7FFF], BANK[31]
-
-
-; RAM variables
-include "src/ram/wram.inc"
-include "src/ram/hram.inc"
