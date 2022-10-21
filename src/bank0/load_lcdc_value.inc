@@ -2,10 +2,10 @@
 SECTION "217F", ROM0[$217F]
 
 
-;;= FUN_217F (load_lcdc_value)
+;;= load_lcdc_value
+;;=  
 ;;=  Loads value in [$C0A2] into rLCDC
-;;=  Input: 
-FUN_217F:
-	ld  a,[$C0A2]
+load_lcdc_value:
+	ld  a,[wunk_11]
 	ldh [rLCDC],a
 	ret

@@ -13,11 +13,28 @@ unk_3   :: db ; $FF92
 ;
 ; TODO name
 ; might be flags?
-; Not used so far
 unk_4   :: db ; $FF93
 
 
-hempty_1 :: ds $0025
+hempty_1 :: ds $0009
+
+
+; Set in entry(=$00)
+;
+; TODO name
+unk_12   :: db ; $FF97
+
+
+hempty_2 :: ds $0002
+
+
+; Used in entry
+;
+; TODO name
+unk_13   :: db ; $FF9A
+
+
+hempty_3 :: ds $0024
 
 
 ; Used in 3036

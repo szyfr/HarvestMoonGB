@@ -1,14 +1,40 @@
 section "WRAM1", WRAM0
 
 
-empty1_1 :: ds $00A7
+empty1_1 :: ds $00A2
 
-; used in entry(=$20), FUN_0258
+
+; Set in FUN_BANK7_7816(=%10000011)
 ;
-; Used as an offset for a banked jump table
+; Used in FUN_217F
+;
+; TODO: name (Probably LCDCValue)
+wunk_11  :: db ; C0A2
+
+
+empty1_2 :: ds $0003
+
+
+; Set in entry(=$00)
 ;
 ; TODO: name
-wunk_7   :: db
+wunk_9   :: db ; C0A6
+
+; Set in entry(=$20)
+;
+; Used in Jump tables
+;
+; TODO: name
+wunk_7   :: db ; C0A7
+
+
+empty1_3 :: ds $0458
+
+
+; Set in entry(=$00)
+;
+; TODO: name
+wunk_10  :: db ; C500
 
 
 section "WRAM2", WRAMX

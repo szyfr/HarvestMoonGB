@@ -2,10 +2,10 @@
 SECTION "7816", ROMX[$7816], BANK[7]
 
 
-;;= FUN_7816
+;;= FUN_BANK7_7816
 ;;=  
 ;;=  Input: 
-FUN_7816:
+FUN_BANK7_7816:
 	; If [$DD00] == 0, return
 	ld  a,[$DD00]
 	or  a
@@ -142,12 +142,12 @@ FUN_7816:
 	; clear_memory($9800, 1024) + [$C0A2] = $83
 	ld  hl,$9800
 	ld  bc,$0400
-	ld  a,$83
-	ld  [$C0A2],a
+	ld  a,LCDCF_ON | LCDCF_OBJON | LCDCF_BGON
+	ld  [wunk_11],a
 	call clear_memory
 
-	; FUN_217F()
-	call FUN_217F
+	; load_lcdc_value()
+	call load_lcdc_value
 	call wait_7000
 	; lcd_disable()
 	call lcd_disable
@@ -223,8 +223,8 @@ FUN_7816:
 	ldh [rOBP0],a
 	ldh [rOBP1],a
 
-	; FUN_217F()
-	call FUN_217F
+	; load_lcdc_value()
+	call load_lcdc_value
 	call wait_7000
 
 	; lcd_disable()

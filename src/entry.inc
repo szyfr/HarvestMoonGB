@@ -130,7 +130,7 @@ start:
 	ld  [rRAMB],a
 
 	; Sets a variable to $20
-	ld  a,%00100000
+	ld  a,$20
 	ld  [wunk_7],a
 
 	; lcd_disable()
@@ -146,7 +146,7 @@ start:
 	pop af
 	pop hl
 
-.LAB_01F7:
+.main_loop:
 	di
 
 	; lcd_disable()
@@ -174,10 +174,10 @@ start:
 
 	; Clears a HRAM value
 	xor a
-	ldh [$97],a
+	ldh [unk_12],a
 
-	; Calls FUN_0258
-	call FUN_0258
+	; jump_table_1()
+	call jump_table_1
 
 	; bank_call(0, FUN_2426)
 	push hl
@@ -189,19 +189,19 @@ start:
 	pop af
 	pop hl
 
-	; 
+	; Set some variables
 	xor a
-	ld  [$C0A6],a ; TODO
+	ld  [wunk_9],a
 	xor a
 	ldh [unk_4],a
 	xor a
-	ldh [$9A],a ; TODO
+	ldh [unk_13],a
 	xor a
-	ld  [$C500],a ; TODO
+	ld  [wunk_10],a
 	xor a
-	ldh [$97],a ; TODO
+	ldh [unk_12],a
 
-	; bank_call(bank = 7, target = $7949)
+	; bank_call(7, FUN_BANK7_7949)
 	push hl
 	push af
 	ld  l,$49
@@ -211,18 +211,18 @@ start:
 	pop af
 	pop hl
 
-	; Calls FUN_0061
-	call FUN_0061
+	; jump_table_2()
+	call jump_table_2
 
-	; Calls FUN_217F
-	call FUN_217F
+	; load_lcdc_value()
+	call load_lcdc_value
 
+	; Enable interrupts and wait until one fires
 	ei
-.LAB_024D:
-	; if [$C0A6] == 0, loop
-	ld  a,[$C0A6] ; TODO
+.wait_for_interrupt:
+	ld  a,[wunk_9]
 	or  a
 	or  a
-	jp  z,.LAB_024D
+	jp  z,.wait_for_interrupt
 
-	jp  .LAB_01F7
+	jp  .main_loop
