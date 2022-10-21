@@ -3,6 +3,11 @@ section "WRAM1", WRAM0
 
 empty1_1 :: ds $00A7
 
+; used in entry(=$20), FUN_0258
+;
+; Used as an offset for a banked jump table
+;
+; TODO: name
 wunk_7   :: db
 
 

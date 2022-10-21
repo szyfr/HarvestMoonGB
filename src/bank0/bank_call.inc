@@ -2,10 +2,10 @@
 SECTION "208B", ROM0[$208B]
 
 
-;;= FUN_208B
+;;= bank_call(A:bank, HL:target)
+;;=  
 ;;=  Loads input ROM bank and calls jump_hl
-;;=  Input: A - bank, HL - target
-FUN_208B:
+bank_call:
 	push bc
 
 	; Save a in b, then save SRAM bank in c

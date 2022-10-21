@@ -11,8 +11,9 @@ ds 5, $FF
 
 ;;= RST08
 ;;= 
+;;=  Jumps to jumptable_bank_call
 RST08:
-	jp FUN_2078
+	jp jumptable_bank_call
 	ret
 ds 4, $FF
 

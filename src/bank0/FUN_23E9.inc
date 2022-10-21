@@ -2,9 +2,9 @@
 SECTION "23E9", ROM0[$23E9]
 
 
-;;= FUN_23E9
+;;= FUN_23E9(A:bank, HL:, DE:wait)
 ;;=  
-;;=  Input: A - bank, HL - FUN_3036?, DE - wait
+;;=  
 FUN_23E9:
 	push de
 	push af
@@ -18,7 +18,7 @@ FUN_23E9:
 	ld  a,%11100100
 	ldh [rBGP],a
 
-	; FUN_3036
+	; FUN_3036(A, $88, $00, $HL)
 	pop af
 	ld  c,a
 	ld  de,$8800
@@ -37,7 +37,7 @@ FUN_23E9:
 .outerloop:
 	ld  b,20
 .innerloop:
-	; Load A into ptr HL 20 times
+	; Load A into [HL] 20 times
 	ld  [hl+],a
 	inc a
 	dec b
@@ -49,13 +49,14 @@ FUN_23E9:
 	jr  nz,.outerloop
 
 
+	; Turn on LCD
 	ld  a,LCDCF_ON | LCDCF_BGON
 	ldh [rLCDC],a
 
 	; Wait
 	call wait_7000
 
-	; Call FUN_22E8
+	; FUN_22E8(DE)
 	pop hl
 	call FUN_22E8
 	call wait_7000

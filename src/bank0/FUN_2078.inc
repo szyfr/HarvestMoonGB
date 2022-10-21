@@ -2,11 +2,12 @@
 SECTION "2078", ROM0[$2078]
 
 
-;;= FUN_2078 (???)
+;;= jumptable_bank_call(A:offset, S+8:return)
+;;=  
 ;;=  Adds A*3 to return value, loads hl and a from that location, then jumps to hl.
-;;=  Input: A - offset, stack+0x8 - return
-FUN_2078:
-	; hl = a*3
+jumptable_bank_call:
+	; Loads offset into HL
+	; Then "multiplies" it by 3
 	ld  e,a
 	ld  d,0
 	ld  l,a
@@ -14,15 +15,15 @@ FUN_2078:
 	add hl,hl
 	add hl,de
 
-	; de = hl then pop into hl
+	; Copies HL into DE
 	ld  e,l
 	ld  d,h
-	pop hl
 
-	; de + hl
+	; Pops return address off stack mand applies offset
+	pop hl
 	add hl,de
 
-	; Load hl and a from [hl]
+	; Loads DE and A from ptr, then copies ptr to DE
 	ld  e,[hl]
 	inc hl
 	ld  d,[hl]
@@ -30,3 +31,5 @@ FUN_2078:
 	ld  a,[hl]
 	ld  l,e
 	ld  h,d
+
+	; Fall into bank_call([return+offset + 2], [return+offset])

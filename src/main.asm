@@ -14,7 +14,7 @@ include "src/bank0/FUN_0258.inc"                    ;; ROM0[$0258]
 
 include "src/bank0/FUN_206C.inc"                    ;; ROM0[$206C]
 include "src/bank0/FUN_2078.inc"                    ;; ROM0[$2078]
-include "src/bank0/FUN_208B.inc"                    ;; ROM0[$208B]
+include "src/bank0/bank_call.inc"                   ;; ROM0[$208B]
 include "src/bank0/jump_hl.inc"                     ;; ROM0[$20A0]
 
 include "src/bank0/copy_run_dma.inc"                ;; ROM0[$214E]

@@ -4,7 +4,7 @@ SECTION "3036", ROM0[$3036]
 
 ;;= FUN_3036(C:bank, D: , E:, HL: )
 ;;=  
-;;=  
+;;=  TODO: run through
 FUN_3036:
 	; Preserve ROM bank and sets ROM bank to input C
 	ld  a,[$4000]
@@ -58,7 +58,7 @@ FUN_3036:
 	inc a
 	inc a
 	inc a
-	ldh [$BE],a
+	ldh [unk_11],a
 
 	; Load value from [hl] and move the lower 4-bits into the upper 4 of c
 	ld  a,[hl+]
@@ -84,13 +84,13 @@ FUN_3036:
 	ld  b,a
 
 	; Load input D, if carry jump, then if != 0 jump.
-	ldh a,[$B9]
+	ldh a,[unk_6]
 	cp  b
 	jr  c,.LAB_30AE
 	jr  nz,.LAB_3095
 
 	; Load input E, if carry jump, then if == 0 jump to same.
-	ldh a,[$B8]
+	ldh a,[unk_5]
 	cp  c
 	jr  c,.LAB_30AE
 	jr  z,.LAB_30AE
@@ -103,7 +103,7 @@ FUN_3036:
 	ld  b,a
 
 	; Load [$BE], replace c and clear a
-	ldh a,[$BE]
+	ldh a,[unk_11]
 	ld  c,a
 	xor a
 
@@ -121,7 +121,7 @@ FUN_3036:
 	jr  nz,.LAB_309E
 
 	; Copy input de into hl
-	ld  hl,$FFB8
+	ld  hl,unk_5
 	ld  a,[hl+]
 	ld  h,[hl]
 	ld  l,a
@@ -135,7 +135,7 @@ FUN_3036:
 	ld  l,c
 
 	; Replace c with [$BE]
-	ldh a,[$BE]
+	ldh a,[unk_11]
 	ld  c,a
 
 .LAB_30B3:
@@ -153,7 +153,7 @@ FUN_3036:
 
 .LAB_30BA
 	; Compare d with [$BD], If carry, restart loop. Then if != 0, leave.
-	ldh a,[$BD]
+	ldh a,[unk_10]
 	ld  b,a
 	ld  a,d
 	cp  b
@@ -161,7 +161,7 @@ FUN_3036:
 	jr  nz,.leave
 
 	; Compare e with [$BC], If no carry, leave.
-	ldh a,[$BC]
+	ldh a,[unk_9]
 	ld  c,a
 	ld  a,e
 	cp  c

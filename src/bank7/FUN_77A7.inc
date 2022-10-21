@@ -45,13 +45,13 @@ FUN_BANK7_77A7:
 	dec b
 	jr  nz,.loop
 
-	; FUN_23E9()
+	; FUN_23E9(19, $7D8A, $7955)
 	ld  hl,$7D8A
 	ld  a,$13
 	ld  de,$7955
 	call FUN_23E9
 
-	; FUN_23E9
+	; FUN_23E9(16, $797F, $7965)
 	ld  hl,$797F
 	ld  a,$10
 	ld  de,$7965

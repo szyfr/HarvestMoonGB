@@ -75,13 +75,13 @@ start:
 	call FUN_232F
 	jr  nc,.LAB_01AC
 
-	; FUN_208B(7, $77A7)
+	; bank_call(7, FUN_BANK7_77A7)
 	push hl
 	push af
 	ld  l,$A7
 	ld  h,$77
 	ld  a,7
-	call FUN_208B
+	call bank_call
 	pop af
 	pop hl
 
@@ -136,13 +136,13 @@ start:
 	; lcd_disable()
 	call lcd_disable
 
-	; FUN_208B(0, $2426)
+	; bank_call(0, FUN_2426)
 	push hl
 	push af
 	ld  l,$26
 	ld  h,$24
 	ld  a,0
-	call FUN_208B
+	call bank_call
 	pop af
 	pop hl
 
@@ -152,23 +152,23 @@ start:
 	; lcd_disable()
 	call lcd_disable
 
-	; FUN_208B(0, $2426)
+	; bank_call(0, FUN_2426)
 	push hl
 	push af
 	ld  l,$26
 	ld  h,$24
 	ld  a,0
-	call FUN_208B
+	call bank_call
 	pop af
 	pop hl
 
-	; FUN_208B(7, $7816)
+	; bank_call(7, FUN_BANK7_7816)
 	push hl
 	push af
 	ld  l,$16
 	ld  h,$78
 	ld  a,7
-	call FUN_208B
+	call bank_call
 	pop af
 	pop hl
 
@@ -179,13 +179,13 @@ start:
 	; Calls FUN_0258
 	call FUN_0258
 
-	; FUN_208B(bank = 0, target = $2426)
+	; bank_call(0, FUN_2426)
 	push hl
 	push af
 	ld  l,$26
 	ld  h,$24
 	ld  a,0
-	call FUN_208B
+	call bank_call
 	pop af
 	pop hl
 
@@ -201,13 +201,13 @@ start:
 	xor a
 	ldh [$97],a ; TODO
 
-	; FUN_208B(bank = 7, target = $7949)
+	; bank_call(bank = 7, target = $7949)
 	push hl
 	push af
 	ld  l,$49
 	ld  h,$79
 	ld  a,7
-	call FUN_208B
+	call bank_call
 	pop af
 	pop hl
 

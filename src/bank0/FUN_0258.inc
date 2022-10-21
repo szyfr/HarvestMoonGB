@@ -2,60 +2,85 @@
 SECTION "0258", ROM0[$0258]
 
 
-;;= FUN_0258
+;;= FUN_0258()
+;;=  
 ;;=  Reads from table and jumps to ptr with a
-;;=  Input:
 FUN_0258:
-	ld  a,[$C0A7] ; TODO
+	ld  a,[wunk_7]
 	or  a
 	rst $08
 
 ; Table
+
+; FUN_BANK32_6E51
 dw $6E51
-db $1F
+db 32
+; FUN_BANK1_4001
 dw $4001
-db $01
+db 1
+; FUN_BANK2_5017
 dw $5017
-db $02
+db 2
+; FUN_BANK3_4001
 dw $4001
-db $03
+db 3
+; FUN_BANK4_4001
 dw $4001
-db $04
+db 4
+; FUN_BANK5_4001
 dw $4001
-db $05
+db 5
+; FUN_BANK6_4001
 dw $4001
-db $06
+db 6
+; FUN_BANK16_4001
 dw $4001
-db $10
+db 16
+; FUN_BANK14_4001
 dw $4001
-db $0E
+db 14
+; FUN_BANK14_54EA
 dw $54EA
-db $0E
+db 14
+; FUN_BANK14_5AC6
 dw $5AC6
-db $0E
+db 14
+; FUN_BANK14_6160
 dw $6160
-db $0E
+db 14
+; FUN_BANK14_665a
 dw $665A
-db $0E
+db 14
+; FUN_BANK16_4F17
 dw $4F17
-db $10
+db 16
+; FUN_BANK10_4F2D
 dw $4F2D
-db $10
+db 10
+; FUN_BANK15_638E
 dw $638E
-db $0F
+db 15
+; FUN_BANK29_4001
 dw $4001
-db $1D
+db 29
+; FUN_BANK29_4350
 dw $4350
-db $1D
+db 29
+; FUN_BANK29_468C
 dw $468C
-db $1D
+db 29
+; FUN_BANK9_4001
 dw $4001
-db $09
+db 9
+; FUN_BANK9_46FC
 dw $46FC
-db $09
+db 9
+; FUN_BANK9_4CA5
 dw $4CA5
-db $09
+db 9
+; FUN_BANK9_4DD2
 dw $4DD2
-db $09
+db 9
+; FUN_BANK9_4EDB
 dw $4EDB
-db $09
+db 9

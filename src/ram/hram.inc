@@ -20,7 +20,7 @@ unk_4   :: db ; $FF93
 hempty_1 :: ds $0025
 
 
-; Used in entry
+; Used in 3036
 ;
 ; TODO name
 unk_5   :: db ; $FFB8
@@ -29,3 +29,4 @@ unk_7   :: db ; $FFBA
 unk_8   :: db ; $FFBB
 unk_9   :: db ; $FFBC
 unk_10  :: db ; $FFBD
+unk_11  :: db ; $FFBE
