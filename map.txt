@@ -32,3 +32,6 @@ start
 	 |- FUN_217F
 	 |- FUN_07A9 -
  |- FUN_7949 (bank07) -
+
+
+Function order in first run:

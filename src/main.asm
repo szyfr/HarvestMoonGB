@@ -56,6 +56,10 @@ ds 7, $FF
 include "src/bank7/FUN_77A7.inc"                    ;; ROM7[$77A7]
 include "src/bank7/FUN_7816.inc"                    ;; ROM7[$7816]
 
+;= Bank 9
+include "src/bank9/FUN_BANK9_46FC.inc"              ;; ROM9[$46FC]
+include "src/bank9/FUN_BANK9_5404.inc"              ;; ROM9[$5404]
+
 
 SECTION "End", ROMX[$7FFF], BANK[31]
 

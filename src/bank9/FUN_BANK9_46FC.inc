@@ -1,0 +1,12 @@
+
+SECTION "46FC", ROMX[$46FC], BANK[9]
+
+
+;;= FUN_BANK9_46FC()
+;;=  
+;;=  
+FUN_BANK9_46FC:
+	; FUN_BANK9_5404($4703)
+	ld  hl,$4703
+	call FUN_BANK9_5404
+	ret
